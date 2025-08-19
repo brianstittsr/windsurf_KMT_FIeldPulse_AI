@@ -80,7 +80,7 @@ export function Sidebar({ currentPath, onNavigate }: SidebarProps) {
               {user?.name || 'User'}
             </p>
             <p className="text-xs text-gray-400">
-              {user?.role || 'Member'}
+              Member
             </p>
           </div>
         </div>
