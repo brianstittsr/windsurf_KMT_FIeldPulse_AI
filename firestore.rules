@@ -1,0 +1,109 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow read/write access to authenticated users for all collections
+    // In production, implement more granular security rules
+    
+    // Customers collection
+    match /customers/{customerId} {
+      allow read, write: if request.auth != null;
+      
+      // Customer comments subcollection
+      match /comments/{commentId} {
+        allow read, write: if request.auth != null;
+      }
+    }
+    
+    // Jobs collection
+    match /jobs/{jobId} {
+      allow read, write: if request.auth != null;
+      
+      // Job subtasks subcollection
+      match /subtasks/{subtaskId} {
+        allow read, write: if request.auth != null;
+      }
+      
+      // Job comments subcollection
+      match /comments/{commentId} {
+        allow read, write: if request.auth != null;
+      }
+      
+      // Job timesheets subcollection
+      match /timesheets/{timesheetId} {
+        allow read, write: if request.auth != null;
+      }
+    }
+    
+    // Estimates collection
+    match /estimates/{estimateId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Invoices collection
+    match /invoices/{invoiceId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Projects collection
+    match /projects/{projectId} {
+      allow read, write: if request.auth != null;
+      
+      // Project comments subcollection
+      match /comments/{commentId} {
+        allow read, write: if request.auth != null;
+      }
+    }
+    
+    // Users collection
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Teams collection
+    match /teams/{teamId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Assets collection
+    match /assets/{assetId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Locations collection
+    match /locations/{locationId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Webhooks collection (for integrations)
+    match /webhooks/{webhookId} {
+      allow read, write: if request.auth != null;
+      
+      // Webhook events subcollection
+      match /events/{eventId} {
+        allow read, write: if request.auth != null;
+      }
+    }
+    
+    // API Keys collection (for integrations)
+    match /apiKeys/{keyId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Integrations collection
+    match /integrations/{integrationId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // AI Automations collection
+    match /aiAutomations/{automationId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // System settings and configuration
+    match /settings/{settingId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null; // Add role-based access in production
+    }
+  }
+}

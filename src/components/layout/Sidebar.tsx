@@ -30,6 +30,7 @@ const navigation = [
   { name: 'Projects', href: '/projects', icon: FolderOpen },
   { name: 'Locations', href: '/locations', icon: MapPin },
   { name: 'Timesheets', href: '/timesheets', icon: Clock },
+  { name: 'Integrations', href: '/integrations', icon: Settings },
 ];
 
 export function Sidebar({ currentPath, onNavigate }: SidebarProps) {
